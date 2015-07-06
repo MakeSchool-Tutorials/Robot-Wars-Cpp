@@ -45,4 +45,4 @@ You can call `moveAhead`, `moveBack`, `shoot`, `turnGunLeft`, `turnGunRight`, `t
 
 #Getting started
 
-To get started, download the [Robot Wars project](https://github.com/MakeSchool/RobotWar-Cpp/archive/master.zip) and extract it's contents. In it, you will find a SpriteBuilder project containing a Robot Wars and a `docs/` folder that contains an html file detailing the full `Robot` class.
+To get started, clone the [Robot Wars project](https://github.com/MakeSchool/RobotWar-Cpp). In it, you will find a SpriteBuilder project containing a Robot Wars. We've written a C++ wrapper around the Objective-C project so that you can code your robots in C++, but they'll still be able to compete with the ones written in Swift.
