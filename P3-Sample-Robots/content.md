@@ -8,10 +8,10 @@ We have written a few sample robots to give you some ideas of how to set up your
 > [action]
 > Open up RobotWar.xcodeproj (within RobotWar.spritebuilder).
 
-There is a *Robots* folder containing a few sample robots. You can change which robot is competing by placing the Class name of the robot in "Configuration.h":
+There is a *CppRobots* folder containing a few sample robots. You can change which robot is competing by placing the Class name of the robot in "CppConfiguration.h":
 
-        static NSString \*robotClass1 = @"RobotOneClassName";
-        static NSString \*robotClass2 = @"RobotTwoClassName";
+       #define ROBOT_ONE_CLASS SimpleRobotCpp
+		#define ROBOT_TWO_CLASS AdvancedRobotCpp
 
 It's a good idea to check out each robot's AI in action by watching a few games between it and other robots.
 
@@ -19,7 +19,7 @@ It's a good idea to check out each robot's AI in action by watching a few games 
 
 All Robots inherit from the "Robot" class and implement the callback methods we discussed earlier.
 
-Let's get started with SimpleRobot. Open up *SimpleRobot.swift*.
+Let's get started with SimpleRobot. Open up *SimpleRobotCpp.cpp*.
 
 SimpleRobot implements the methods hitWall, run, and gotHit. The endless loop in run zigzags around and blindly shoots. hitWall gets called when it runs into a wall. SimpleRobot's response is to turn 180 degrees when it hits it's front and to turn 90 degrees in the opposite direction when it hits it's right or left sides. gotHit invokes a knee jerk reaction of shooting and then turning and moving out of the way.
 
@@ -31,7 +31,7 @@ SimpleRobot's AI state machine diagram looks like this:
 
 #TurretRobot
 
-Open up *TurretRobot.swift*.
+Open up *TurretRobotCpp*.
 
 TurretRobot is even simpler than SimpleRobot but it's the first time we'll see the usage of explicit states. TurrentRobot defines two states as an enum called RobotState: scanning and firing. It starts off in the scanning state and continually rotates its gun right.
 
@@ -43,7 +43,7 @@ TurretRobot's AI state machine diagram looks like this:
 
 #CamperRobot
 
-Open up *CamperRobot.swift*.
+Open up *CamperRobotCpp*.
 
 CamperRobot defines three explicit states: first move, camping, and firing. It starts off in the first move state. During this state it moves to the nearest corner and then enters the camping state. In the camping state it turns the gun to the center of the battlefield and continues to shoot. If the enemy is scanned, it moves to a firing state similar to TurretRobot's. After 2.5 seconds without a successful scan or bullet hit, CamperRobot moves back to the camping state.
 
@@ -53,7 +53,7 @@ CamperRobot's AI state machine diagram looks like this:
 
 #AdvancedRobot
 
-Open up *AdvancedRobot.swift*.
+Open up *AdvancedRobotCpp*.
 
 Advanced robot defines four explicit states: default, turnaround, firing, and searching. It also makes use of an `actionIndex`. Using this `actionIndex` and switch statement pattern will allow your run loops to "short circuit". This is important because of how the robot's code is run. When you leave a callback, you go directly back to where you were in your `run` method. If you had a long sequence of actions, it would not check for a new state until you finished them. Performing a single move in each loop of `run` allows you to check and move onto the next state as quickly as possible.
 

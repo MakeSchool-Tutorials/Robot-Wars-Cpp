@@ -3,7 +3,7 @@ title: "Robot Wars!"
 slug: robot-war
 ---
 
-We have already set up a basic `Robot` class that all robots will subclass. We'll discuss the basics here and then show you were to find the full documentation.
+We have already set up a basic `RobotCpp` class that all robots will subclass. We'll discuss the basics here and then show you were to find the full documentation.
 
 ![](./robot.png)
 
@@ -21,21 +21,21 @@ Each robot has a `run()` method that gets called continually. This will be the e
 
 Your robot will rely on callbacks to get updates on current game information. You should override each of these to receive the callbacks and decide what to do next. These methods will be the arrows in your robot AI's state machine diagram.
 
-##scannedRobot(robot:atPosition:)
+##scannedRobotAtPosition(RWVec position)
 
-`scannedRobot` gets called whenever an enemy enters your robot's scanner. The position of the enemy robot is passed in through the parameter `position`.
+`scannedRobotAtPosition` gets called whenever an enemy enters your robot's scanner. The position of the enemy robot is passed in through the parameter `position`.
 
 ##gotHit()
 
 `gotHit` notifies your robot that it was just hit by an enemy bullet. It is probably a good idea to get moving when you get this callback!
 
-##hitWall(direction:hitAngle:)
+##hitWallWithSideAndAngle(RobotWallHitSide side, float hitAngle)
 
-`hitWall` let's your robot know it just hit a wall at the edge of the battlefield. It's good practice to move away from the wall so that you do not get blocked in.
+`hitWallWithSideAndAngle` lets your robot know it just hit a wall at the edge of the battlefield. It's good practice to move away from the wall so that you do not get blocked in.
 
-##bulletHitEnemy(bullet:)
+##bulletHitEnemy(RWVec enemyPosition)
 
-`bulletHitEnemy` is called when you successfully hit the enemy robot. You can get the enemies current position with `bullet.bulletOwner.position()`.
+`bulletHitEnemy` is called when you successfully hit the enemy robot. `enemyPosition` is passed in as a parameter.
 
 #Robot actions
 
@@ -45,4 +45,4 @@ You can call `moveAhead`, `moveBack`, `shoot`, `turnGunLeft`, `turnGunRight`, `t
 
 #Getting started
 
-To get started, download the [Robot Wars project](https://github.com/MakeSchool/RobotWar-Swift/archive/master.zip) and extract it's contents. In it, you will find a SpriteBuilder project containing a Robot Wars and a `docs/` folder that contains an html file detailing the full `Robot` class.
+To get started, download the [Robot Wars project](https://github.com/MakeSchool/RobotWar-Cpp/archive/master.zip) and extract it's contents. In it, you will find a SpriteBuilder project containing a Robot Wars and a `docs/` folder that contains an html file detailing the full `Robot` class.
